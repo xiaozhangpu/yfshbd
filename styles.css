@@ -1,0 +1,389 @@
+/* 全局样式重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Comic Neue', 'Comic Sans MS', cursive, sans-serif;
+    background: radial-gradient(circle at center, #ff6666 0%, #e60000 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    overflow-x: hidden;
+}
+
+/* 游戏容器 */
+.game-container {
+    width: 100%;
+    max-width: 480px;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+}
+
+/* 标题区域 */
+.header {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.title-with-character {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+    justify-content: center;
+}
+
+.title-with-character h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0;
+    color: #ffff00;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+    animation: titleBounce 2s ease-in-out infinite;
+}
+
+@keyframes titleBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.title-character {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    animation: bounce 2s ease-in-out infinite;
+    transform-origin: center;
+}
+
+.door-icon {
+    width: 50px;
+    height: 80px;
+    opacity: 0.9;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-10px) rotate(5deg); }
+    75% { transform: translateY(-10px) rotate(-5deg); }
+}
+
+/* 倒计时区域 - 在后台进行，不显示在页面上 */
+.countdown {
+    margin-bottom: 20px;
+    display: none;
+}
+
+.countdown-text {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.countdown-timer {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #ffff00;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+    animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.2); opacity: 0.8; }
+}
+
+/* 门容器 */
+.doors-container {
+    position: relative;
+    padding: 20px;
+}
+
+/* 门的网格布局 */
+.doors-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+    perspective: 1000px;
+}
+
+/* 门的样式 */
+.door {
+    cursor: pointer;
+    position: relative;
+    height: 0;
+    padding-bottom: 120%; /* 设置门的宽高比为5:6，更适合显示角色图片 */
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease;
+}
+
+.door:hover {
+    transform: scale(1.03);
+}
+
+.door-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
+
+.door-inner.open {
+    transform: rotateY(180deg);
+}
+
+.door-front, .door-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.door-front {
+    background-color: #8b4513;
+    background-image: 
+        linear-gradient(90deg, transparent 33%, rgba(255,255,255,.1) 33%, rgba(255,255,255,.1) 66%, transparent 66%),
+        linear-gradient(rgba(255,255,255,.1) 2px, transparent 2px),
+        linear-gradient(90deg, rgba(255,255,255,.1) 2px, transparent 2px);
+    background-size: 30px 30px, 30px 30px, 30px 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    border: 2px solid #733300;
+}
+
+.door-back {
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: rotateY(180deg);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    border: 2px solid #3d8b40;
+}
+
+/* 角色图片样式 */
+.character {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    transform-origin: center bottom;
+}
+
+/* 角色探出头动画 */
+.character.peeking {
+    animation: peek 2s ease-in-out infinite;
+}
+
+@keyframes peek {
+    0% { transform: translateY(20px) scale(0.9); opacity: 0.8; }
+    50% { transform: translateY(0) scale(1); opacity: 1; }
+    100% { transform: translateY(20px) scale(0.9); opacity: 0.8; }
+}
+
+.character.jumping {
+    animation: jump 0.8s ease-in-out;
+}
+
+@keyframes jump {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-40px) scale(1.1); }
+}
+
+.character.disappointed {
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0) rotate(0deg); }
+    20% { transform: translateX(-10px) rotate(-5deg); }
+    40% { transform: translateX(10px) rotate(5deg); }
+    60% { transform: translateX(-10px) rotate(-5deg); }
+    80% { transform: translateX(10px) rotate(5deg); }
+}
+
+/* 结果反馈区域 */
+.result-feedback {
+    position: absolute;
+    bottom: 20px;
+    right: 240px; /* 为再玩一次按钮留出空间 */
+    z-index: 10;
+    pointer-events: none;
+}
+
+/* 调整再玩一次按钮的位置 */
+.play-again {
+    position: absolute;
+    bottom: 20px;
+    right: 50px;
+    z-index: 11;
+    margin-top: 0;
+}
+
+.win-message {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #000000;
+    -webkit-text-stroke: 0.5px #ffffff;
+    text-stroke: 0.5px #ffffff;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.6);
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.5s ease;
+    letter-spacing: 3px;
+}
+
+.win-message.show {
+    opacity: 1;
+    transform: scale(1);
+    animation: bounceIn 0.8s ease-in-out;
+}
+
+@keyframes bounceIn {
+    0% { transform: scale(0); opacity: 0; }
+    60% { transform: scale(1.2); opacity: 1; }
+    80% { transform: scale(0.9); }
+    100% { transform: scale(1); }
+}
+
+/* 再玩一次按钮 */
+.play-again {
+    font-family: inherit;
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 12px 30px;
+    background-color: #ffff00;
+    color: #ff3f3f;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    margin-top: 20px;
+}
+
+.play-again:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.play-again:active {
+    transform: translateY(0);
+}
+
+/* 响应式设计 */
+@media (max-width: 480px) {
+    .game-container {
+        padding: 15px;
+    }
+    
+    .title-with-character {
+        flex-direction: row;
+    }
+    
+    .title-with-character h1 {
+        font-size: 2rem;
+    }
+    
+    .title-character {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .door-icon {
+        width: 40px;
+        height: 65px;
+    }
+    
+    .doors-grid {
+        gap: 20px;
+    }
+    
+    .door {
+        height: 160px;
+    }
+    
+    .result-feedback {
+        right: 200px; /* 为移动设备调整位置 */
+    }
+    
+    .play-again {
+        right: 40px; /* 为移动设备调整位置 */
+        font-size: 1.1rem;
+        padding: 10px 25px;
+    }
+    
+    .win-message {
+        font-size: 2rem;
+        color: #000000;
+        -webkit-text-stroke: 0.5px #ffffff;
+        text-stroke: 0.5px #ffffff;
+        text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.6);
+        letter-spacing: 2px;
+    }
+}
+
+@media (max-width: 360px) {
+    .title-with-character {
+        flex-direction: row;
+    }
+    
+    .title-with-character h1 {
+        font-size: 1.8rem;
+    }
+    
+    .title-character {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .door-icon {
+        width: 35px;
+        height: 55px;
+    }
+    
+    .doors-grid {
+        gap: 15px;
+    }
+    
+    .door {
+        height: 130px;
+    }
+    
+    .result-feedback {
+        right: 180px; /* 为小屏幕调整位置 */
+        bottom: 15px;
+    }
+    
+    .play-again {
+        right: 30px; /* 为小屏幕调整位置 */
+        bottom: 15px;
+        font-size: 1rem;
+        padding: 8px 20px;
+    }
+    
+    .win-message {
+        font-size: 1.8rem;
+        color: #000000;
+        -webkit-text-stroke: 0.4px #ffffff;
+        text-stroke: 0.4px #ffffff;
+        text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.6);
+        letter-spacing: 1.5px;
+    }
+}
