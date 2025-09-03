@@ -3,13 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>找到我！- 海绵宝宝猜角色游戏</title>
+    <title>小游戏合集 - 选择游戏</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- 主界面 -->
+    <div class="main-menu" id="mainMenu">
+        <div class="main-container">
+            <h1 class="main-title">小游戏合集</h1>
+            <div class="game-selection">
+                <div class="game-card" data-game="find-character">
+                    <div class="game-preview">
+                        <img src="images/spongebob.png" alt="找角色游戏" class="game-icon">
+                        <h2>找到我！</h2>
+                        <p>记忆目标角色的位置</p>
+                    </div>
+                </div>
+                
+                <div class="game-card" data-game="memory-match">
+                    <div class="game-preview">
+                        <img src="images/patrick.png" alt="记忆配对游戏" class="game-icon">
+                        <h2>记忆配对</h2>
+                        <p>翻牌配对相同的角色</p>
+                    </div>
+                </div>
+                
+                <div class="game-card" data-game="quick-click">
+                    <div class="game-preview">
+                        <img src="images/mr-krabs.png" alt="快速点击游戏" class="game-icon">
+                        <h2>快速点击</h2>
+                        <p>在时间内点击指定角色</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- 游戏容器 -->
-    <div class="game-container">
+    <div class="game-container" id="gameContainer" style="display: none;">
+        <!-- 返回按钮 -->
+        <button class="back-button" onclick="backToMain()">← 返回主菜单</button>
+        
         <!-- 标题区域 -->
         <div class="header">
             <div class="title-with-character">
@@ -28,57 +63,60 @@
         <div class="doors-container">
             <div class="doors-grid">
                 <!-- 四扇门 -->
-                <div class="door" data-door="0">
-                    <div class="door-inner open">
-                        <div class="door-front"></div>
-                        <div class="door-back">
-                            <img src="images/spongebob.png" alt="海绵宝宝" class="character peeking">
-                        </div>
+            <div class="door" data-index="0">
+                <div class="door-inner">
+                    <div class="door-front">
+                        <div class="door-icon">🚪</div>
                     </div>
-                </div>
-                
-                <div class="door" data-door="1">
-                    <div class="door-inner open">
-                        <div class="door-front"></div>
-                        <div class="door-back">
-                            <img src="images/patrick.png" alt="派大星" class="character peeking">
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="door" data-door="2">
-                    <div class="door-inner open">
-                        <div class="door-front"></div>
-                        <div class="door-back">
-                            <img src="images/squidward.png" alt="章鱼哥" class="character peeking">
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="door" data-door="3">
-                    <div class="door-inner open">
-                        <div class="door-front"></div>
-                        <div class="door-back">
-                            <img src="images/mr-krabs.png" alt="蟹老板" class="character peeking">
-                        </div>
+                    <div class="door-back">
+                        <img src="" alt="" class="character">
                     </div>
                 </div>
             </div>
+            <div class="door" data-index="1">
+                <div class="door-inner">
+                    <div class="door-front">
+                        <div class="door-icon">🚪</div>
+                    </div>
+                    <div class="door-back">
+                        <img src="" alt="" class="character">
+                    </div>
+                </div>
+            </div>
+            <div class="door" data-index="2">
+                <div class="door-inner">
+                    <div class="door-front">
+                        <div class="door-icon">🚪</div>
+                    </div>
+                    <div class="door-back">
+                        <img src="" alt="" class="character">
+                    </div>
+                </div>
+            </div>
+            <div class="door" data-index="3">
+                <div class="door-inner">
+                    <div class="door-front">
+                        <div class="door-icon">🚪</div>
+                    </div>
+                    <div class="door-back">
+                        <img src="" alt="" class="character">
+                    </div>
+                </div>
+            </div>
+            </div>
         </div>
         
-        <!-- 结果反馈区域 -->
+        <!-- 结果反馈 -->
         <div class="result-feedback">
             <div class="win-message">太棒了！</div>
+            <button class="play-again" style="display: none;">再玩一次</button>
         </div>
         
-        <!-- 再玩一次按钮 -->
-        <button class="play-again" style="display: none;">再玩一次</button>
-        
-        <!-- 音频元素 -->
+        <!-- 音效 -->
         <audio id="win-sound" src="sounds/win.mp3" preload="auto"></audio>
         <audio id="wrong-sound" src="sounds/wrong.mp3" preload="auto"></audio>
     </div>
-    
+
     <script src="script.js"></script>
 </body>
 </html>
