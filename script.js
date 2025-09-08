@@ -223,19 +223,18 @@ class FindCharacterGame {
 
 // 游戏切换管理
 function showGame(gameType) {
-    mainMenu.style.display = 'none';
-    gameContainer.style.display = 'block';
-    currentGame = gameType;
-
-    if (gameType === 'find-character') {
-        gameInstance = new FindCharacterGame();
-        gameInstance.init();
-    } else if (gameType === 'cup-flip') {
+    if (gameType === 'cup-flip') {
         window.location.href = 'cup-flip.html';
         return;
     } else if (gameType === 'hat-trick') {
         window.location.href = 'hat-trick.html';
         return;
+    } else if (gameType === 'find-character') {
+        mainMenu.style.display = 'none';
+        gameContainer.style.display = 'block';
+        currentGame = gameType;
+        gameInstance = new FindCharacterGame();
+        gameInstance.init();
     }
 }
 
