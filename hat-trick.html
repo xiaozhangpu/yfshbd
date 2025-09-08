@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>帽子戏法 - 猜猜我在哪</title>
+    <link rel="stylesheet" href="hat-trick.css">
+</head>
+<body>
+    <button class="back-button" onclick="window.location.href='index.html'">← 返回主菜单</button>
+    
+    <div class="game-container">
+        <header class="game-header">
+            <h1 class="game-title">猜猜我在哪？</h1>
+            <p class="game-subtitle">记住海绵宝宝的位置！</p>
+        </header>
+
+        <div class="game-area">
+            <div class="table">
+                <div class="hats-container">
+                    <div class="hat-wrapper" data-index="0">
+                        <div class="hat">
+                            <div class="hat-top"></div>
+                            <div class="hat-base"></div>
+                            <div class="hat-question">?</div>
+                        </div>
+                        <div class="character-container">
+                            <img src="images/spongebob.png" alt="海绵宝宝" class="character-image">
+                        </div>
+                    </div>
+                    
+                    <div class="hat-wrapper" data-index="1">
+                        <div class="hat">
+                            <div class="hat-top"></div>
+                            <div class="hat-base"></div>
+                            <div class="hat-question">?</div>
+                        </div>
+                        <div class="character-container">
+                            <img src="images/spongebob.png" alt="海绵宝宝" class="character-image">
+                        </div>
+                    </div>
+                    
+                    <div class="hat-wrapper" data-index="2">
+                        <div class="hat">
+                            <div class="hat-top"></div>
+                            <div class="hat-base"></div>
+                            <div class="hat-question">?</div>
+                        </div>
+                        <div class="character-container">
+                            <img src="images/spongebob.png" alt="海绵宝宝" class="character-image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="game-controls">
+            <!-- 再玩一次按钮已移除，游戏将自动重新开始 -->
+        </div>
+
+        <div class="game-message" id="gameMessage">
+            点击开始游戏，记住海绵宝宝的位置！
+        </div>
+    </div>
+
+    <div class="overlay" id="overlay">
+        <div class="result-modal">
+            <div class="result-content">
+                <div class="result-emoji" id="resultEmoji">🎉</div>
+                <div class="result-text" id="resultText">太棒了！</div>
+                <button class="modal-btn" onclick="closeModal()">继续</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="hat-trick.js"></script>
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>小游戏合集 - 选择游戏</title>
+    <title>认知训练游戏合集 - 选择游戏</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
 </head>
@@ -11,7 +11,7 @@
     <!-- 主界面 -->
     <div class="main-menu" id="mainMenu">
         <div class="main-container">
-            <h1 class="main-title">小游戏合集</h1>
+            <h1 class="main-title">认知训练游戏合集</h1>
             <div class="game-selection">
                 <div class="game-card" data-game="find-character">
                     <div class="game-preview">
@@ -21,19 +21,19 @@
                     </div>
                 </div>
                 
-                <div class="game-card" data-game="memory-match">
+                <div class="game-card" data-game="cup-flip">
                     <div class="game-preview">
-                        <img src="images/patrick.png" alt="记忆配对游戏" class="game-icon">
-                        <h2>记忆配对</h2>
-                        <p>翻牌配对相同的角色</p>
+                        <img src="images/cup.png" alt="翻转杯子游戏" class="game-icon">
+                        <h2>翻转杯子！</h2>
+                        <p>翻转杯子让所有杯子朝下</p>
                     </div>
                 </div>
                 
-                <div class="game-card" data-game="quick-click">
+                <div class="game-card" data-game="hat-trick">
                     <div class="game-preview">
-                        <img src="images/mr-krabs.png" alt="快速点击游戏" class="game-icon">
-                        <h2>快速点击</h2>
-                        <p>在时间内点击指定角色</p>
+                        <img src="images/hat.png" alt="帽子戏法游戏" class="game-icon">
+                        <h2>帽子戏法</h2>
+                        <p>猜猜海绵宝宝藏在哪顶帽子下</p>
                     </div>
                 </div>
             </div>
@@ -104,6 +104,11 @@
                 </div>
             </div>
             </div>
+        </div>
+        
+        <!-- 记忆阶段提示语 -->
+        <div class="memory-hint" id="memoryHint" style="display: none;">
+            <p>请记住各图片的位置</p>
         </div>
         
         <!-- 结果反馈 -->

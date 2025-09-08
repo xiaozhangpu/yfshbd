@@ -1,0 +1,389 @@
+/* 全局样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'MiSans', 'HarmonyOS Sans', 'Helvetica Neue', Arial, sans-serif;
+    background: linear-gradient(135deg, #ff4757, #ff6b7a);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* 返回按钮样式 */
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    z-index: 100;
+}
+
+.back-button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+}
+
+.game-container {
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+    margin: 0 auto;
+    padding-top: 80px;
+}
+
+/* 头部样式 */
+.game-header {
+    margin-bottom: 30px;
+}
+
+.game-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #ffdd59;
+    margin-bottom: 15px;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+}
+
+.game-rule {
+    font-size: 1.8rem;
+    color: #ffffff;
+    margin-bottom: 25px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.counter {
+    font-size: 2.2rem;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+#moveCount {
+    color: #ffdd59;
+}
+
+/* 游戏区域 */
+.game-area {
+    margin-bottom: 30px;
+}
+
+.cups-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 40px;
+    margin-bottom: 60px;
+    justify-items: center;
+    align-items: center;
+}
+
+.cup-container:nth-child(1),
+.cup-container:nth-child(2) {
+    grid-row: 1;
+}
+
+.cup-container:nth-child(1) {
+    grid-column: 1;
+}
+
+.cup-container:nth-child(2) {
+    grid-column: 3;
+}
+
+.cup-container:nth-child(3),
+.cup-container:nth-child(4),
+.cup-container:nth-child(5) {
+    grid-row: 2;
+}
+
+.cup-container:nth-child(3) {
+    grid-column: 1;
+}
+
+.cup-container:nth-child(4) {
+    grid-column: 2;
+}
+
+.cup-container:nth-child(5) {
+    grid-column: 3;
+}
+
+.cup {
+    width: 150px;
+    height: 180px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.cup-front, .cup-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.cup-front {
+    background-image: url('images/cup.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: none;
+    background-color: transparent;
+}
+
+.cup-back {
+    background-image: url('images/cup.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    transform: rotateY(180deg);
+    border: none;
+    background-color: transparent;
+    position: relative;
+}
+
+.checkmark {
+    font-size: 3.5rem;
+    color: #00ff00;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    backface-visibility: hidden;
+}
+
+.cup.flipped .cup-back {
+    transform: rotateY(0deg) scaleY(-1);
+}
+
+.cup.flipped .cup-front {
+    transform: rotateY(180deg) scaleY(-1);
+}
+
+.cup.flipped .cup-back {
+    transform: rotateY(0deg) scaleY(-1);
+}
+
+.cup-back .checkmark {
+    transform: translate(-50%, -50%) scaleY(-1);
+    color: #00ff00;
+}
+
+.cup.flipped .cup-back .checkmark {
+    transform: translate(-50%, -50%) scaleY(1);
+}
+
+.cup.flipped .cup-back .checkmark {
+    transform: translate(-50%, -50%) scaleY(-1);
+}
+
+.cup.selected {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+    transform: scale(1.05);
+}
+
+.cup-container {
+    perspective: 1000px;
+}
+
+/* 按钮样式 */
+.flip-btn {
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding: 15px 40px;
+    background: #ffdd59;
+    color: #ff4757;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.flip-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.flip-btn:disabled {
+    background: #cccccc;
+    color: #666666;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* 胜利弹窗 */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-content {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    max-width: 300px;
+    width: 90%;
+}
+
+.modal-content h2 {
+    font-size: 2rem;
+    color: #ff4757;
+    margin-bottom: 15px;
+}
+
+.modal-content p {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.play-again-btn {
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 12px 30px;
+    background: #ff4757;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.play-again-btn:hover {
+    background: #ff3838;
+    transform: translateY(-2px);
+}
+
+/* 庆祝动画 */
+@keyframes bounce {
+    0%, 20%, 53%, 80%, 100% {
+        transform: translate3d(0, 0, 0);
+    }
+    40%, 43% {
+        transform: translate3d(0, -30px, 0);
+    }
+    70% {
+        transform: translate3d(0, -15px, 0);
+    }
+    90% {
+        transform: translate3d(0, -4px, 0);
+    }
+}
+
+.cup.victory {
+    animation: bounce 1s ease-in-out;
+}
+
+/* 响应式设计 */
+@media (max-width: 600px) {
+    .cups-grid {
+        gap: 25px;
+    }
+    
+    .cup {
+        width: 120px;
+        height: 144px;
+    }
+    
+    .cup-front, .cup-back {
+        border-radius: 8px;
+    }
+}
+
+@media (max-width: 400px) {
+    .cup {
+        width: 100px;
+        height: 120px;
+    }
+    
+    .cup-front, .cup-back {
+        border-radius: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .game-title {
+        font-size: 3rem;
+    }
+    
+    .game-rule {
+        font-size: 1.6rem;
+    }
+    
+    .counter {
+        font-size: 2rem;
+    }
+    
+    .cups-grid {
+        gap: 20px;
+    }
+    
+    .cup {
+        width: 90px;
+        height: 108px;
+    }
+    
+    .flip-btn {
+        font-size: 1.8rem;
+        padding: 18px 45px;
+    }
+}
+
+@media (max-width: 400px) {
+    .cup {
+        width: 100px;
+        height: 120px;
+    }
+}
+
+@media (max-width: 360px) {
+    .cups-grid {
+        gap: 15px;
+    }
+    
+    .cup {
+        width: 85px;
+        height: 102px;
+    }
+    
+    .checkmark {
+        font-size: 2.8rem;
+    }
+}

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>翻转杯子挑战</title>
+    <link rel="stylesheet" href="cup-flip.css">
+</head>
+<body>
+    <div class="game-container">
+        <button class="back-button" onclick="window.location.href='index.html'">← 返回主菜单</button>
+        <header class="game-header">
+            <h1 class="game-title">翻转所有杯子</h1>
+            <p class="game-rule">每次必须翻转 3 个杯子</p>
+            <div class="counter">翻转次数：<span id="moveCount">0</span></div>
+        </header>
+
+        <main class="game-area">
+            <div class="cups-grid">
+                <div class="cup-container" data-index="0">
+                    <div class="cup">
+                        <div class="cup-front"></div>
+                        <div class="cup-back">
+                            <div class="checkmark">✔️</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cup-container" data-index="1">
+                    <div class="cup">
+                        <div class="cup-front"></div>
+                        <div class="cup-back">
+                            <div class="checkmark">✔️</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cup-container" data-index="2">
+                    <div class="cup">
+                        <div class="cup-front"></div>
+                        <div class="cup-back">
+                            <div class="checkmark">✔️</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cup-container" data-index="3">
+                    <div class="cup">
+                        <div class="cup-front"></div>
+                        <div class="cup-back">
+                            <div class="checkmark">✔️</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cup-container" data-index="4">
+                    <div class="cup">
+                        <div class="cup-front"></div>
+                        <div class="cup-back">
+                            <div class="checkmark">✔️</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </main>
+
+        <div id="victoryModal" class="modal">
+            <div class="modal-content">
+                <h2>成功！</h2>
+                <p id="finalMoves">你用了 <span id="finalCount">0</span> 次翻转完成了挑战！</p>
+                <button id="playAgainBtn" class="play-again-btn">再玩一次</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="cup-flip.js"></script>
+</body>
+</html>

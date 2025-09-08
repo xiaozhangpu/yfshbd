@@ -80,6 +80,12 @@ class FindCharacterGame {
             doorInner.classList.add('open');
         });
 
+        // 显示记忆提示语
+        const memoryHint = document.getElementById('memoryHint');
+        if (memoryHint) {
+            memoryHint.style.display = 'block';
+        }
+
         // 开始倒计时
         this.startCountdown();
     }
@@ -100,6 +106,12 @@ class FindCharacterGame {
     }
 
     closeAllDoors() {
+        // 隐藏记忆提示语
+        const memoryHint = document.getElementById('memoryHint');
+        if (memoryHint) {
+            memoryHint.style.display = 'none';
+        }
+
         this.elements.doors.forEach(door => {
             setTimeout(() => {
                 const doorInner = door.querySelector('.door-inner');
@@ -218,6 +230,12 @@ function showGame(gameType) {
     if (gameType === 'find-character') {
         gameInstance = new FindCharacterGame();
         gameInstance.init();
+    } else if (gameType === 'cup-flip') {
+        window.location.href = 'cup-flip.html';
+        return;
+    } else if (gameType === 'hat-trick') {
+        window.location.href = 'hat-trick.html';
+        return;
     }
 }
 
